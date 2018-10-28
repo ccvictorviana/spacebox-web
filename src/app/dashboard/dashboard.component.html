@@ -1,3 +1,55 @@
-<p>
-  dashboard works!
-</p>
+<div *ngIf="showLoading" class="loading-overlay">
+  <img src="./../../assets/images/Facebook-1s-200px.gif" />
+</div>
+<div class="offset-1 col-md-10 dashboard-container">
+
+  <mat-card>
+    <mat-card-content>
+
+      <mat-toolbar color="primary" class="text-align-center mat-menu-buttons">
+        <mat-toolbar-row>
+          <span><img src="./../../assets/images/if_logo.png" width="45" height="45"> SpaceBox</span>
+          <span class="example-spacer"></span>
+          <button mat-flat-button class="button-selected">Dashboard</button>
+          <button mat-flat-button>Notificações</button>
+          <button mat-flat-button>Perfil</button>
+          <button mat-flat-button (click)="logout()">Sair</button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <br />
+      <div class="div-content">
+        <div class="toolbar-buttons">
+          <button class="btn btn-primary" (click)="refreshFiles()">Atualizar</button>
+          <button class="btn btn-primary" (click)="openModalUploadFile()">Upload</button>
+          <button class="btn btn-primary" (click)="openModalAddFolder()">Criar Pasta</button>
+        </div>
+        <table>
+          <thead>
+            <th>Nome</th>
+            <th style="width: 8%; text-align: center;">Tamanho</th>
+            <th style="width: 12%; text-align: center;">Dt. Criação</th>
+            <th style="width: 12%; text-align: center;">Dt. Alteração</th>
+            <th style="width: 7%; text-align: center;">Ações</th>
+          </thead>
+          <tbody>
+            <tr *ngIf="callStackFileParentId.length > 1">
+              <td colspan="4"><a href="#" (click)="backFolder()">......</a></td>
+            </tr>
+            <tr *ngFor="let file of files">
+              <td><a href="#" (click)="selectFile(file)">{{ file.name }}</a></td>
+              <td style="text-align: center;">{{ (file.size > 0 ? (file.size | filesize) : '') }}</td>
+              <td style="text-align: center;">{{ file.created | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+              <td style="text-align: center;">{{ file.updated | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+              <td style="text-align: center;">
+                <a *ngIf="file.owner" href="#" (click)="deleteFile(file)"><img src="./../../assets/images/trash.png"
+                    width="20" title="Excluir" /></a>&nbsp;
+                <a *ngIf="file.owner" href="#" (click)="openModalShareFolder(file)"><img src="./../../assets/images/share.png"
+                    width="20" title="Compartilhar" /></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

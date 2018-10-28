@@ -1,0 +1,19 @@
+<mat-card style="margin-top: 10px;">
+    <div class="row">
+        <div class="col-md-10">
+            <span class="file-info">{{file.name}}({{file.size | bytes}})</span>
+        </div>
+        <div class="col-md-2">
+            <section class="example-section" style="font-size: 12px; padding-top: 12px; text-align: right;">
+                <div style="padding-left: 20px; padding-right: 10px;">
+                    <img *ngIf="statusUpload" src="./../../../assets/images/{{statusUpload}}" title="{{statusMessage}}"
+                        width="25" />
+                </div>
+                <div>
+                    <a (click)="remove()">X</a>
+                </div>
+                <!-- <a [ngClass]="{'disabled' : isUploading}" (click)="upload()">Upload</a> -->
+            </section>
+        </div>
+    </div>
+</mat-card>

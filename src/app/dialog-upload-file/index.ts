@@ -1,0 +1,1 @@
+export * from './dialog-upload-file.component';

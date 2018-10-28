@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
 export class Globals {
-  authServiceHost: string = 'https://spacebox-auth-service.herokuapp.com';
-  fileServiceHost: string = 'https://spacebox-file-service.herokuapp.com';
+  // Config Heroku
+  // static AUTH_SERVICE_HOST: string = 'https://spacebox-auth-service.herokuapp.com';
+  // static FILE_SERVICE_HOST: string = 'https://spacebox-file-service.herokuapp.com';
 
-  // Config DEV
-  // authServiceHost: string = 'http://localhost:7531';
-  // fileServiceHost: string = 'http://localhost:8531';
+  // Config Dev
+  static AUTH_SERVICE_HOST: string = 'http://localhost:7531';
+  static FILE_SERVICE_HOST: string = 'http://localhost:8531';
 }

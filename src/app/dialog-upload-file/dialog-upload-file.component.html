@@ -1,0 +1,24 @@
+<div *ngIf="showLoading" class="loading-overlay">
+    <img src="./../../assets/images/Facebook-1s-200px.gif" />
+</div>
+<h4>Upload</h4>
+<div class="row">
+    <div class="col-md-12 formFieldWidth480">
+        <div style="margin: 10px 0 40px 0">
+            <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="httpUrlUpload" 
+                [httpRequestHeaders]="httpRequestHeaders" [httpRequestParams]="data" multiple>
+                <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
+            </mat-file-upload-queue>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="upload-btn-wrapper">
+            <button class="btn-upload">Selecionar</button>
+            <input mat-raised-button color="primary" type="file" multiple [fileUploadInputFor]="fileUploadQueue" />
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" style="border-color: #cfd8dc; background-color: #cfd8dc; color: black; margin-left: -40px;"
+            mat-dialog-close>Fechar</button>
+    </div>
+</div>

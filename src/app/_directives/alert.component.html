@@ -1,0 +1,8 @@
+<div *ngIf="show && message" id="message" class="offset-1 col-md-10">
+    <div style="padding: 5px;">
+        <div [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }"
+            style="display: flex;">
+            {{message.text}}
+        </div>
+    </div>
+</div>

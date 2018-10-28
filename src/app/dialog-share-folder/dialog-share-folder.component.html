@@ -1,0 +1,52 @@
+<!-- <app-upload></app-upload> -->
+<div *ngIf="showLoading" class="loading-overlay">
+  <img src="./../../assets/images/Facebook-1s-200px.gif" />
+</div>
+<h4>Compartilhar ({{fileName}})</h4>
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="createFolderForm" (ngSubmit)="onSubmit()">
+      <div class="form-group" style="margin-bottom: 0;">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Usuário" [matAutocomplete]="auto" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Nome é obrigatório</div>
+          </div>
+        </mat-form-field>
+
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngIf="isLoading" class="is-loading">
+            Carregando...
+          </mat-option>
+          <ng-container *ngIf="!isLoading">
+            <mat-option *ngFor="let user of filteredUsers" [value]="user">
+              <span>{{ user.username }}</span>
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary">Compartilhar</button>
+        <button class="btn btn-primary" style="border-color: #cfd8dc; background-color: #cfd8dc; color: black; margin-left: 10px;"
+          mat-dialog-close>Fechar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<table style="margin-top: 30px;">
+  <thead>
+    <th>Usuário</th>
+    <th style="width: 13%; text-align: center;">Ações</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let share of shares">
+      <td>{{ share.userName }}</td>
+      <td style="text-align: center;">
+        <a href="#" (click)="removeShare(share)"><img src="./../../assets/images/trash.png" width="20" title="Excluir" /></a>&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
